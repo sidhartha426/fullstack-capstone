@@ -1,10 +1,11 @@
-version: '3.9'
-
 services:
   # Mongodb service
   mongo_db:
     container_name: db_container
     image: mongo:latest
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASS}
     ports:
       - 27017:27017
     restart: always
@@ -16,6 +17,9 @@ services:
     image: nodeapp
     ports:
       - 3030:3030
+    environment:
+      - MONGO_USER=${MONGO_USER}
+      - MONGO_PASS=${MONGO_PASS}
     depends_on: 
       - mongo_db
 
