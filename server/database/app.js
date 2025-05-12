@@ -11,7 +11,7 @@ app.use(require('body-parser').urlencoded({ extended: false }));
 const reviews_data = JSON.parse(fs.readFileSync("reviews.json", 'utf8'));
 const dealerships_data = JSON.parse(fs.readFileSync("dealerships.json", 'utf8'));
 
-const dbUser = process.env.MONGO_USER;  
+const dbUser = process.env.MONGO_USER;
 const dbPass = process.env.MONGO_PASS;
 
 mongoose.connect(`mongodb://${dbUser}:${dbPass}@mongo_db:27017/`, {
