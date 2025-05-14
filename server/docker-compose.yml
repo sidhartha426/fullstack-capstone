@@ -1,0 +1,40 @@
+services:
+
+
+  mongo_db:
+    container_name: db_container
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASS}
+    ports:
+      - 27017:27017
+    restart: always
+
+
+  node_service:
+    image: nodeapp
+    ports:
+      - 3030:3030
+    environment:
+      - MONGO_USER=${MONGO_USER}
+      - MONGO_PASS=${MONGO_PASS}
+    depends_on: 
+      - mongo_db
+  
+
+  senti:
+    image: sentiment
+    ports:
+      - 5000:5000
+  
+
+  django_service:
+    image: djangoapp
+    ports:
+      - 8000:8000
+    depends_on: 
+      - node_service
+      - mongo_db
+
+
