@@ -30,4 +30,4 @@ docker build . -t nodeapp
 cd ..
 
 docker build . -t djangoapp
-docker-compose up -d
+docker compose up -d
