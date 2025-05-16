@@ -1,5 +1,5 @@
 services:
-  # Mongodb service
+
   mongo_db:
     container_name: db_container
     image: mongo:latest
@@ -12,8 +12,8 @@ services:
     volumes:
       - mongo_data:/data/db
 
-  # Node api service
-  api:
+
+  node_service:
     image: nodeapp
     ports:
       - 3030:3030
@@ -27,8 +27,6 @@ services:
     image: sentiment
     ports:
       - 5000:5000
-    depends_on: 
-      - api
 
 volumes:
   mongo_data: {}
