@@ -9,6 +9,7 @@ fi
 frontend_url="$1"
 backend_url=$(echo "$frontend_url" | sed 's/8000/3030/')
 sentiment_analyzer_url=$(echo "$frontend_url" | sed 's/8000/5000/')
+searchcars_url=$(echo "$frontend_url" | sed 's/8000/3050/')
 
 
 
@@ -19,6 +20,7 @@ echo "frontend_url=$frontend_url" > ./djangoproj/.env
 
 echo "backend_url=$backend_url" > ./djangoapp/.env
 echo "sentiment_analyzer_url=$sentiment_analyzer_url" >> ./djangoapp/.env
+echo "searchcars_url=$searchcars_url" >> ./djangoapp/.env
 
 
 cd djangoapp/microservices
@@ -27,6 +29,10 @@ cd ../..
 
 cd database
 docker build . -t nodeapp
+cd ..
+
+cd carsInventory
+docker build . -t nodeinventory
 cd ..
 
 docker build . -t djangoapp

@@ -130,3 +130,6 @@ dmypy.json
 
 #Theia Workspace
 .theia
+
+#Node JS
+node_modules

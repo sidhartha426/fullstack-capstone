@@ -23,6 +23,17 @@ services:
       - mongo_db
   
 
+  inventory_service:
+    image: nodeinventory
+    ports:
+      - 3050:3050
+    environment:
+      - MONGO_USER=${MONGO_USER}
+      - MONGO_PASS=${MONGO_PASS}
+    depends_on: 
+      - mongo_db
+
+
   senti:
     image: sentiment
     ports:
@@ -36,5 +47,7 @@ services:
     depends_on: 
       - node_service
       - mongo_db
+      - inventory_service
+
 
 
